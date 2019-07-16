@@ -77,10 +77,12 @@ class Graph(object):
         # what if the key is already inside
         # What are the parameters for keys to be 
         # acceptable
-        new_vertex = Vertex(key)
-        self.vertex_network[key] = new_vertex
-        self.num_vertexes += 1
-        return new_vertex
+        if key not in self.vertex_network:
+            new_vertex = Vertex(key)
+            self.vertex_network[key] = new_vertex
+            self.num_vertexes += 1
+
+        return self.vertex_network[key]
     
     def get_vertex(self, key):
         return self.vertex_network[key]
@@ -88,10 +90,10 @@ class Graph(object):
     def add_edge(self, from_vertex, to_vertex, weight=0):
     # If the vertex was not already on the network, add it
         if from_vertex not in self.vertex_network:
-            self.vertex_network[from_vertex] = Vertex(from_vertex)
+            self.add_vertex(from_vertex)
         if to_vertex not in self.vertex_network:
-            self.vertex_network[to_vertex] = Vertex(to_vertex)
-        # 
+            self.add_vertex(to_vertex)
+
         self.vertex_network[from_vertex].add_link(self.vertex_network[to_vertex], weight)
 
     def get_vertices(self):
