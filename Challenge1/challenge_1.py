@@ -33,14 +33,23 @@
 # AbstractDataType origin
 # ----------------------------------------------------------
 
-# from graph.py import Graph
+from graph import Graph
 
 # ----------------------------------------------------------
 # Main functions required to accomplish the Goal
 # ----------------------------------------------------------
 
 def make_graph(data):
+    graph_network = Graph()
+    for vertex in vertexes_of_data(data):
+        graph_network.add_vertex(vertex)
+    
+    for adjacency_list in data[2:]:
+        clean_adjacency_list = adjacency_list.rstrip().replace('(', '').replace(')', '').split(',') 
+    return clean_adjacency_list 
     pass
+
+
 
 # ----------------------------------------------------------
 # Helper functions 
@@ -49,8 +58,11 @@ def make_graph(data):
 def vertexes_of_data(data):
     return data[1].rstrip().split(',')
 
-def _iter_(some_list):
-    pass
+def _iter_lists_in_data(data):
+    # adjacency_lists = []
+    for adjacency_list in data[2:]:
+        clean_adjacency_list = adjacency_list.rstrip().replace('(', '').replace(')', '').split(',') 
+    return clean_adjacency_list
 
 def open_file(file_name):
     file = open(file_name, 'r') 
@@ -73,10 +85,8 @@ if __name__ == "__main__":
 # Making the elements
 # -------------------------------------------------------- 
     vertexes = vertexes_of_data(data)
-    print("Vertices: ", len(vertexes))
+    print("Vertices: ", vertexes, len(vertexes))
 
-    # for item in range(2, len(data)):
-    #     vertex = data[item].rstrip().replace('(', '').replace(')', '').split(',')
 
 # Vertices: 4
 # Edges: 4
