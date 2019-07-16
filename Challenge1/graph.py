@@ -36,33 +36,68 @@
 # ----------------------------------------------------------
 class Vertex(object):
     def __init__(self, new_vertex):
+    # "Here you only have to start the traits like the name and neighbors data" 
         # The name of the vertex is the id
         self.id = new_vertex
         # This will store 
-        self.neighbours = {}
+        self.links = {}
+        self.num_links = 0
 
-    def add_neighbor(self, vertex, weight=0):
-        if vertex not in self.neighbours:
-            self.neighbours[vertex] = weight
-        # return
+    def add_link(self, vertex, weight=0):
+    # "If the neighbor is not in there already, add the name to the dictionary"
+        if vertex not in self.links:
+            self.links[vertex] = weight
+            self.num_links += 1
+    
 
-    def get_neighbors(self):
-        return self.neighbours.keys()
+    def get_links(self):
+    # "Return the dictionary property of the function"
+        return self.links.keys()
 
     def get_id(self):
+    # "Return the id property that is the same has the vertex information"
         return self.id
 
     def get_edge_weight(self, vertex):
-        return self.neighbours[vertex] 
-'''
-    X init(  self , vertex  ) : "Here you only have to start the traits like the name and neighbors data" 
-    X add_neighbor(  self , vertex , weight=0  ) : "If the neighbor is not in there already, add the name 
-                                                  to the dictionary"
-    X get_neighbors(  self  ) : "Return the dictionary property of the function"
-    X get_id(  self  ) : "Return the id property that is the same has the vertex information"
-    X get_edge_weight(  self , vertex  ) : "Return the weight of the given edge towards the vertex"
-'''
+    # "Return the weight of the given edge towards the vertex"
+        return self.links[vertex]
+ 
+
 # ----------------------------------------------------------
 # Class Graph or Network
 # ----------------------------------------------------------
-class Graph:
+class Graph(object):
+    def __init__(self):
+        self.vertex_network = {}
+        self.num_vertexes = 0
+        self.num_edges = 0
+
+    def add_vertex(self, key):
+        # Must fix, there is no collision control,
+        # what if the key is already inside
+        # What are the parameters for keys to be 
+        # acceptable
+        new_vertex = Vertex(key)
+        self.vertex_network[key] = new_vertex
+        self.num_vertexes += 1
+        return new_vertex
+    
+    def get_vertex(self, key):
+        return self.vertex_network[key]
+
+    def add_edge(self, from_vertex, to_vertex, weight=0):
+    # If the vertex was not already on the network, add it
+        if from_vertex not in self.vertex_network:
+            self.vertex_network[from_vertex] = Vertex(from_vertex)
+        if to_vertex not in self.vertex_network:
+            self.vertex_network[to_vertex] = Vertex(to_vertex)
+        # 
+        self.vertex_network[from_vertex].add_link(self.vertex_network[to_vertex], weight)
+
+    def get_vertices(self):
+        """return all the vertices in the graph"""
+        return self.vertex_network.keys()
+
+    def __iter__(self):
+        """Iterate over the vertex objects in the graph, to use sytax: for v in g"""
+        return iter(self.vertex_network.values())
