@@ -3,6 +3,7 @@
 # Graph || Network AbstractDataType, made with Vertex || 
 # Node || AdjacencyList DataStructure
 # ----------------------------------------------------------
+# ----------------------------------------------------------
 
 # Components:
 '''
@@ -31,6 +32,37 @@
 '''
 
 # ----------------------------------------------------------
+# Class Vertex or Node, AdjacentList DataStructure
 # ----------------------------------------------------------
-# Class Vertex or Node
+class Vertex(object):
+    def __init__(self, new_vertex):
+        # The name of the vertex is the id
+        self.id = new_vertex
+        # This will store 
+        self.neighbours = {}
+
+    def add_neighbor(self, vertex, weight=0):
+        if vertex not in self.neighbours:
+            self.neighbours[vertex] = weight
+        # return
+
+    def get_neighbors(self):
+        return self.neighbours.keys()
+
+    def get_id(self):
+        return self.id
+
+    def get_edge_weight(self, vertex):
+        return self.neighbours[vertex] 
+'''
+    X init(  self , vertex  ) : "Here you only have to start the traits like the name and neighbors data" 
+    X add_neighbor(  self , vertex , weight=0  ) : "If the neighbor is not in there already, add the name 
+                                                  to the dictionary"
+    X get_neighbors(  self  ) : "Return the dictionary property of the function"
+    X get_id(  self  ) : "Return the id property that is the same has the vertex information"
+    X get_edge_weight(  self , vertex  ) : "Return the weight of the given edge towards the vertex"
+'''
 # ----------------------------------------------------------
+# Class Graph or Network
+# ----------------------------------------------------------
+class Graph:
