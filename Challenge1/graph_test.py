@@ -45,7 +45,35 @@ class TestVertex(unittest.TestCase):
         self.assertEqual(vertex_a.links, {vertex_b:0})
 
     def test_get_links(self):
-        pass
+        vertex_a = Vertex('A')
+        vertex_b = Vertex('B')
+        vertex_c = Vertex('C')  
+        vertex_d = Vertex('D')
+        vertex_e = Vertex('E')
+        vertex_f = Vertex('F')
+
+        ## Links of A
+        # Vertex 'A' => Vertex 'B'
+        vertex_a.add_link(vertex_b)
+
+        ## Links of B
+        # Vertex 'A' => Vertex 'B'
+        vertex_b.add_link(vertex_a)
+        # Vertex 'B' => Vertex 'C'
+        vertex_b.add_link(vertex_c) 
+
+        ## Links of C
+        # Vertex 'C' => Vertex 'D'
+        vertex_c.add_link(vertex_d)
+
+        ## Links of D
+        # Vertex 'D' => Vertex 'E'
+        vertex_d.add_link(vertex_e)
+
+        ## Links of E
+        # Vertex 'E' => Vertex 'F'
+        vertex_e.add_link(vertex_f)
+
 
     def test_get_id(self):
         pass
