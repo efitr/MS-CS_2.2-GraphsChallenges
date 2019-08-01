@@ -13,6 +13,9 @@
 
 ## * Class Vertex or Node - Implemented with an Adjacency List DataStructure
 '''
+    Traits of the class as a whole, it is unidirectional.
+'''
+'''
     init(  self , vertex  ) : "Here you only have to start the traits like the name and neighbors data" 
     add_neighbor(  self , vertex , weight=0  ) : "If the neighbor is not in there already, add the name 
                                                   to the dictionary"
@@ -45,10 +48,28 @@ class Vertex(object):
 
     def add_link(self, vertex, weight=0):
     # "If the neighbor is not in there already, add the name to the dictionary"
+        ## One approach
+        # if vertex not in self.links:
+        #     self.links[vertex] = weight
+        #     self.num_links += 1
+
+        ## Another approach
+        # while vertex not in self.links:
+        #     try:
+        #         self.links[vertex] = weight
+        #         self.num_links += 1 
+        #         return
+        #     except ValueError:
+        #         print("Vertex", vertex, "is already inside")
+
+        ## Another approach
         if vertex not in self.links:
             self.links[vertex] = weight
             self.num_links += 1
-    
+        raise ValueError("Vertex ", vertex, " is already inside")
+
+    def add_links(self):
+        pass
 
     def get_links(self):
     # "Return the dictionary property of the function"
