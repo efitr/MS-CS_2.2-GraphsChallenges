@@ -4,31 +4,34 @@
 # ----------------------------------------------------------
 # ----------------------------------------------------------
 ## Goals:
-# *Implement the Graph ADT with an adjacency list
-# *Implement code to read in a graph from a text file
-#  to create an instance of the Graph ADT and use it's 
-#  methods.
+'''
+    * Implement the Graph ADT with an adjacency list
+    * Implement code to read in a graph from a text file
+      to create an instance of the Graph ADT and use it's 
+      methods.
+'''
 # ----------------------------------------------------------
 # Inputs:
-# * The graph_data.txt
-# G
-# 1,2,3,4
-# (1,2,10)
-# (1,4,5)
-# (2,3,5)
-# (2,4,7)
-
-# Process required to achieve both end points:
- 
+'''
+    * The graph_data.txt
+    G
+    1,2,3,4
+    (1,2,10)
+    (1,4,5)
+    (2,3,5)
+    (2,4,7)
+'''
+# ----------------------------------------------------------
 # Outputs:
-# Vertices: 4
-# Edges: 4
-# Edge List:
-# (1,2,10)
-# (1,4,5)
-# (2,3,5)
-# (2,4,7)
-
+'''
+    Vertices: 4
+    Edges: 4
+    Edge List:
+    (1,2,10)
+    (1,4,5)
+    (2,3,5)
+    (2,4,7)
+'''
 # ----------------------------------------------------------
 # AbstractDataType origin
 # ----------------------------------------------------------
@@ -47,7 +50,6 @@ def make_graph(data):
     for adjacency_list in data[2:]:
         clean_adjacency_list = adjacency_list.rstrip().replace('(', '').replace(')', '').split(',') 
     return clean_adjacency_list 
-    pass
 
 
 
