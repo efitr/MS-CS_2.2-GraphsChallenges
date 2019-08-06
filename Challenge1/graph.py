@@ -46,7 +46,7 @@ class Vertex(object):
         self.links = {}
         self.num_links = 0
 
-    def add_link(self, vertex, weight=0):
+    def add_unidirectional_link(self, vertex, weight=0):
     # "If the neighbor is not in there already, add the name to the dictionary"
         ## One approach
         # if vertex not in self.links:
@@ -66,8 +66,12 @@ class Vertex(object):
         if vertex not in self.links:
             self.links[vertex] = weight
             self.num_links += 1
+            return
         raise ValueError("Vertex ", vertex, " is already inside")
 
+    def add_bidirectional_link(self, vertex, weight=0):
+        pass
+    
     def add_links(self):
         pass
 
