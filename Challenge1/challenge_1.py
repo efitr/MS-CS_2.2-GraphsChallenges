@@ -20,6 +20,10 @@
     (1,4,5)
     (2,3,5)
     (2,4,7)
+
+    **Notes on data** _ First line G means Graph,
+                        Second line are the Vertexs,
+                        Third to last one are the x coordinate to y coordinate and weight.
 '''
 # ----------------------------------------------------------
 # Outputs:
@@ -81,7 +85,15 @@ if __name__ == "__main__":
 
 # Getting data ready
 # --------------------------------------------------------
-    data = open_file("graph_data.txt")
+    # Here I'm getting the 
+    try:
+        file_name = input("Hi, please type the filename: ")
+        return
+    except OSError:
+        print("")
+    
+    data = open_file(file_name)
+
     print("This is the data file: ", data)
     
 # Making the elements
