@@ -61,6 +61,12 @@ def make_graph(data):
 # Helper functions 
 # ----------------------------------------------------------
 
+def is_digraph(data):
+    if data[0] == 'G':
+        print("This is a graph")
+    pass
+
+
 def vertexes_of_data(data):
     return data[1].rstrip().split(',')
 
@@ -71,8 +77,11 @@ def _iter_lists_in_data(data):
     return clean_adjacency_list
 
 def open_file(file_name):
-    file = open(file_name, 'r') 
-    return file.readlines() 
+    try:
+        file = open(file_name, 'r') 
+        return file.readlines() 
+    except OSError:
+        print("This is not an available name currently.")
 
 
 # --------------------------------------------------------
@@ -86,21 +95,23 @@ if __name__ == "__main__":
 # Getting data ready
 # --------------------------------------------------------
     # Here I'm getting the 
-    try:
-        file_name = input("Hi, please type the filename: ")
-        return
-    except OSError:
-        print("")
+    
+    
+    
+    file_name = input("Hi, please type the filename: ")
     
     data = open_file(file_name)
 
+    if data == None:
+        exit()
+    
     print("This is the data file: ", data)
+
+
     
 # Making the elements
 # -------------------------------------------------------- 
-    vertexes = vertexes_of_data(data)
-    print("Vertices: ", vertexes, len(vertexes))
-
+    # vertexes = vertexes_of_data(data)
 
 # Vertices: 4
 # Edges: 4
