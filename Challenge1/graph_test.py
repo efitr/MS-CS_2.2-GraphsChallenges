@@ -24,20 +24,20 @@ class TestVertex(unittest.TestCase):
         self.assertEqual(vertex.num_links, 0)
 
     # This checks whether the links are bidirectional or unidirectional
-    def test_add_link(self):
+    def test_add_unidirectional_link(self):
         vertex_a = Vertex('A')
         vertex_b = Vertex('B')
         vertex_c = Vertex('C') 
 
         # This proofs that it is unidirectional
-        vertex_a.add_link(vertex_b)
+        vertex_a.add_unidirectional_link(vertex_b)
         self.assertEqual(vertex_a.num_links, 1)
         self.assertEqual(vertex_b.num_links, 0)
         self.assertEqual(vertex_c.num_links, 0)
         self.assertEqual(vertex_a.links, {vertex_b:0})
         self.assertEqual(vertex_b.links, {})
 
-        vertex_c.add_link(vertex_a)
+        vertex_c.add_unidirectional_link(vertex_a)
         self.assertEqual(vertex_a.num_links, 1)
         self.assertEqual(vertex_b.num_links, 0)
         self.assertEqual(vertex_c.num_links, 1)
@@ -74,13 +74,14 @@ class TestVertex(unittest.TestCase):
                 if counter == 100:
                     return "Infinite loop"
             return True
-                    while vertex not in self.links:
-            try:
-                self.links[vertex] = weight
-                self.num_links += 1 
-                return
-            except ValueError:
-                print("Vertex", vertex, "is already inside")
+
+            while vertex not in self.links:
+                try:
+                    self.links[vertex] = weight
+                    self.num_links += 1 
+                    return
+                except ValueError:
+                    print("Vertex", vertex, "is already inside")
 
         ghost_vertex = Vertex('ghost_vertex')
 
